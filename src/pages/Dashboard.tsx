@@ -200,9 +200,10 @@ export const Dashboard = () => {
 
         {/* Main Content Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 bg-muted/50">
+          <TabsList className="grid w-full grid-cols-5 bg-muted/50">
             <TabsTrigger value="overview">Visão Geral</TabsTrigger>
             <TabsTrigger value="photos">Minhas Fotos</TabsTrigger>
+            <TabsTrigger value="events">Meus Eventos</TabsTrigger>
             <TabsTrigger value="sales">Vendas</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
           </TabsList>
@@ -347,6 +348,92 @@ export const Dashboard = () => {
                         <p className="text-xs text-foreground/70">
                           Comissão: R$ {sale.commission.toFixed(2)}
                         </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Events Tab */}
+          <TabsContent value="events">
+            <Card className="bg-gradient-card border-border/50">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle>Meus Eventos (3)</CardTitle>
+                <div className="flex gap-2">
+                  <Button variant="outline" asChild>
+                    <Link to="/my-events">Ver Todos</Link>
+                  </Button>
+                  <Button variant="hero" asChild>
+                    <Link to="/create-event" className="gap-2">
+                      <Plus className="h-4 w-4" />
+                      Criar Evento
+                    </Link>
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[
+                    {
+                      id: 1,
+                      title: "Casamento Marina & João",
+                      date: "15/02/2024",
+                      location: "Igreja São José, Palmas",
+                      status: "published",
+                      photos: 234,
+                      views: 1250,
+                      sales: 18
+                    },
+                    {
+                      id: 2,
+                      title: "Formatura Medicina UFT",
+                      date: "22/03/2024",
+                      location: "Teatro Fernanda Montenegro",
+                      status: "published",
+                      photos: 156,
+                      views: 890,
+                      sales: 12
+                    },
+                    {
+                      id: 3,
+                      title: "Corrida Noturna Palmas",
+                      date: "05/04/2024",
+                      location: "Orla de Palmas",
+                      status: "draft",
+                      photos: 89,
+                      views: 0,
+                      sales: 0
+                    }
+                  ].map((event) => (
+                    <div key={event.id} className="flex items-center justify-between p-4 bg-background/50 rounded-lg">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-muted rounded-lg flex items-center justify-center">
+                          <CalendarDays className="h-6 w-6 text-muted-foreground" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">{event.title}</h4>
+                          <p className="text-sm text-foreground/70">
+                            {event.date} • {event.location}
+                          </p>
+                          <div className="flex items-center gap-4 text-xs text-foreground/60 mt-1">
+                            <span>{event.photos} fotos</span>
+                            <span>{event.views} views</span>
+                            <span>{event.sales} vendas</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Badge 
+                          variant={event.status === 'published' ? 'default' : 'outline'}
+                          className={event.status === 'published' ? 'bg-green-500/20 text-green-400 border-green-500/30' : ''}
+                        >
+                          {event.status === 'published' ? 'Publicado' : 'Rascunho'}
+                        </Badge>
+                        <Button variant="ghost" size="icon">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
                       </div>
                     </div>
                   ))}
