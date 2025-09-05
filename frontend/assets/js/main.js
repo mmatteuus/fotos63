@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(btn);
 });
 btn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+let scrollTimeout;
 window.addEventListener('scroll', () => {
-  btn.style.display = window.scrollY > 100 ? 'block' : 'none';
+  if (scrollTimeout) return;
+  scrollTimeout = setTimeout(() => {
+    btn.style.display = window.scrollY > 100 ? 'block' : 'none';
+    scrollTimeout = null;
+  }, 200);
 });
