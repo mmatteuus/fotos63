@@ -115,6 +115,15 @@ export const Footer = () => {
             <a href="#cookies" className="hover:text-foreground transition-colors">Cookies</a>
           </div>
         </div>
+
+        <Separator className="mt-8 mb-4 bg-border/50" />
+        
+        {/* Developer Signature */}
+        <div className="text-center">
+          <p className="text-xs text-foreground/50">
+            Desenvolvido por <span className="text-primary font-medium">MtsFerreira</span>
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -66,11 +66,11 @@ export const Header = () => {
 
             {/* CTA Buttons */}
             <div className="hidden sm:flex items-center space-x-2">
-              <Button variant="outline" size="sm">
-                Entrar
+              <Button variant="outline" size="sm" asChild>
+                <a href="/login">Entrar</a>
               </Button>
-              <Button variant="hero" size="sm">
-                Vender Fotos
+              <Button variant="hero" size="sm" asChild>
+                <a href="/dashboard">Vender Fotos</a>
               </Button>
             </div>
 
