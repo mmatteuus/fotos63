@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Evento - Fotos63</title>
+  <script>window.ENV_API_BASE = "https://api.seu-dominio.com";</script>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg?v=2">
+  <link rel="shortcut icon" href="./assets/favicon.svg?v=2" type="image/svg+xml">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>:root{--brand:#FF8C00;--accent:#FFD700;--bg:#0b0b0c} body{background:var(--bg); color:white;}</style>
+</head>
+<body>
+  <nav class="container py-3"><a href="index.html" class="text-light">Home</a></nav>
+  <div class="container py-5">
+    <h1 class="mb-4">Criar Evento</h1>
+    <form id="eventForm" class="bg-dark p-4 rounded">
+      <div class="mb-3">
+        <label class="form-label">Título</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Descrição</label>
+        <textarea name="description" class="form-control" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-warning">Salvar</button>
+      <div id="msg" class="mt-3"></div>
+    </form>
+    <footer class="text-center mt-5">Desenvolvido por MtsFerreira</footer>
+  </div>
+  <script type="module">
+    import { authHeaders } from './assets/js/api.js';
+    const form = document.getElementById('eventForm');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const r = await fetch(`${API_BASE}/api/events/`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json', ...authHeaders()},
+        body: JSON.stringify(data)
+      });
+      document.getElementById('msg').textContent = r.ok ? 'Evento criado!' : 'Erro ao criar';
+      form.reset();
+    });
+  </script>
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>

@@ -5,3 +5,6 @@ django-cors-headers
 django-storages
 boto3
 pillow
+
+dj-database-url
+psycopg2-binary
